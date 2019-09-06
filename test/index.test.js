@@ -1,0 +1,27 @@
+const assert = require('assert')
+const configd = require('../src/index.js')
+
+describe('Folder loading', () => {
+  it('Loads files from a single folder with correct overrides', () => {
+    const cfg = configd(['./test/samples/t1'])
+    assert.equal(cfg.k1, 't1/c1/k1')
+    assert.equal(cfg.k2, 't1/c2/k2')
+    assert.equal(cfg.k3, 't1/c2/k3')
+    assert.equal(Object.keys(cfg).length, 3)
+  })
+
+  it('Loads the highest priority version of files in multiple folders', () => {
+    const cfg = configd(['./test/samples/t1', './test/samples/t2'])
+    assert.equal(cfg.k1, 't2/c1/k1')
+    assert.equal(cfg.k2, 't1/c2/k2')
+    assert.equal(cfg.k3, 't1/c2/k3')
+    assert.equal(cfg.k4, 't2/c3/k4')
+    assert.equal(Object.keys(cfg).length, 4)
+  })
+
+  it('Does not load overriden files at all', () => {
+    const cfg = configd(['./test/samples/terr', './test/samples/t1'])
+    // We only need to check that no exception was thrown
+    assert.equal(Object.keys(cfg).length, 3)
+  })
+})

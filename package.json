@@ -1,0 +1,30 @@
+{
+  "name": "config.d",
+  "version": "1.0.0",
+  "description": "A simple config loader with folder overrides",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mancontr/config.d.git"
+  },
+  "keywords": [
+    "config",
+    "loader",
+    "overrides"
+  ],
+  "author": "Anxo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mancontr/config.d/issues"
+  },
+  "homepage": "https://github.com/mancontr/config.d#readme",
+  "files": [
+    "src/index.js"
+  ],
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  }
+}
