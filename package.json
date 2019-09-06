@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mancontr/config.d.git"
+    "url": "git+https://github.com/mancontr/js.conf.d.git"
   },
   "keywords": [
     "config",
@@ -18,9 +18,9 @@
   "author": "Anxo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mancontr/config.d/issues"
+    "url": "https://github.com/mancontr/js.conf.d/issues"
   },
-  "homepage": "https://github.com/mancontr/config.d#readme",
+  "homepage": "https://github.com/mancontr/js.conf.d#readme",
   "files": [
     "src/index.js"
   ],
