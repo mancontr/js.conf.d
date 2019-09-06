@@ -1,7 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
-module.exports = function (folders) {
+module.exports = function (folders, opts) {
+  const { merge = Object.assign, sort } = opts || {}
+
   const filesMap = {}
 
   // Track all files from each folder, replacing the repeated names from previous folders
@@ -15,12 +17,12 @@ module.exports = function (folders) {
   }
 
   // Load the correct version of each file, in filename order
-  const ret = {}
+  let ret = {}
   const files = Object.keys(filesMap)
-  files.sort()
+  files.sort(sort)
   for (const file of files) {
     const content = require(filesMap[file])
-    Object.assign(ret, content)
+    ret = merge(ret, content)
   }
   return ret
 }

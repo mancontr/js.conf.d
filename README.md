@@ -19,4 +19,11 @@ const configd = require('js.conf.d')
 const config = configd.load(['/etc/my-config', '~/.my-config', './config'])
 ```
 
-By default, the files will be loaded on filename order (as defined by `sort()`), and the contents will be merged using `Object.assign`.
+By default, the files will be loaded on filename order (as defined by `sort()`), and the contents will be merged using `Object.assign`. You can customize this behaviour by passing a options object as a second parameter, with the following keys:
+
+```js
+const config = configd.load(['/etc/my-config', '~/.my-config', './config'], {
+  sort: (a, b) => { /*...*/ }, // Argument to sort() the filenames. Defaults to null.
+  merge: (a, b) => { /*...*/ } // Value merger function. Defaults to Object.assign.
+})
+```

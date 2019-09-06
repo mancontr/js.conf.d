@@ -25,3 +25,34 @@ describe('Folder loading', () => {
     assert.equal(Object.keys(cfg).length, 3)
   })
 })
+
+
+describe('Parameters', () => {
+  it('Uses the custom merge function', () => {
+    const arrayMerger = (current, add) => {
+      for (const key of Object.keys(add)) {
+        current[key] = current[key] || []
+        current[key].push(add[key])
+      }
+      return current
+    }
+    const cfg = configd(['./test/samples/t1', './test/samples/t2'], {
+      merge: arrayMerger
+    })
+    assert.deepEqual(cfg.k1, ['t2/c1/k1'])
+    assert.deepEqual(cfg.k2, ['t2/c1/k2', 't1/c2/k2'])
+    assert.deepEqual(cfg.k3, ['t1/c2/k3'])
+    assert.deepEqual(cfg.k4, ['t2/c3/k4'])
+    assert.equal(Object.keys(cfg).length, 4)
+  })
+
+  it('Uses the custom filename sort function', () => {
+    const sort = (a, b) => a < b ? 1 : -1
+    const cfg = configd(['./test/samples/t1', './test/samples/t2'], { sort })
+    assert.equal(cfg.k1, 't2/c1/k1')
+    assert.equal(cfg.k2, 't2/c1/k2')
+    assert.equal(cfg.k3, 't1/c2/k3')
+    assert.equal(cfg.k4, 't2/c3/k4')
+    assert.equal(Object.keys(cfg).length, 4)
+  })
+})
