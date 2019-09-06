@@ -13,7 +13,7 @@ This package allows you to set a list of search folders, and any js files on the
 Using config.d is very simple:
 
 ```js
-const configd = require('config.d')
+const configd = require('js.conf.d')
 
 // Load config from any of these 3 folders, with the latter overriding the former
 const config = configd.load(['/etc/my-config', '~/.my-config', './config'])

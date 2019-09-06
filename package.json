@@ -1,5 +1,5 @@
 {
-  "name": "config.d",
+  "name": "js.conf.d",
   "version": "1.0.0",
   "description": "A simple config loader with folder overrides",
   "main": "index.js",
