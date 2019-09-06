@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mancontr/config.d.svg?branch=master)](https://travis-ci.org/mancontr/config.d)
+
 # config.d
 
 A simple configuration manager, with directory hierarchy / overrides support.
