@@ -1,9 +1,9 @@
 const assert = require('assert')
-const configd = require('../src/index.js')
+const jsconfd = require('../src/index.js')
 
 describe('Folder loading', () => {
   it('Loads files from a single folder with correct overrides', () => {
-    const cfg = configd(['./test/samples/t1'])
+    const cfg = jsconfd(['./test/samples/t1'])
     assert.equal(cfg.k1, 't1/c1/k1')
     assert.equal(cfg.k2, 't1/c2/k2')
     assert.equal(cfg.k3, 't1/c2/k3')
@@ -11,7 +11,7 @@ describe('Folder loading', () => {
   })
 
   it('Loads the highest priority version of files in multiple folders', () => {
-    const cfg = configd(['./test/samples/t1', './test/samples/t2'])
+    const cfg = jsconfd(['./test/samples/t1', './test/samples/t2'])
     assert.equal(cfg.k1, 't2/c1/k1')
     assert.equal(cfg.k2, 't1/c2/k2')
     assert.equal(cfg.k3, 't1/c2/k3')
@@ -20,7 +20,7 @@ describe('Folder loading', () => {
   })
 
   it('Does not load overriden files at all', () => {
-    const cfg = configd(['./test/samples/terr', './test/samples/t1'])
+    const cfg = jsconfd(['./test/samples/terr', './test/samples/t1'])
     // We only need to check that no exception was thrown
     assert.equal(Object.keys(cfg).length, 3)
   })
@@ -36,7 +36,7 @@ describe('Parameters', () => {
       }
       return current
     }
-    const cfg = configd(['./test/samples/t1', './test/samples/t2'], {
+    const cfg = jsconfd(['./test/samples/t1', './test/samples/t2'], {
       merge: arrayMerger
     })
     assert.deepEqual(cfg.k1, ['t2/c1/k1'])
@@ -48,7 +48,7 @@ describe('Parameters', () => {
 
   it('Uses the custom filename sort function', () => {
     const sort = (a, b) => a < b ? 1 : -1
-    const cfg = configd(['./test/samples/t1', './test/samples/t2'], { sort })
+    const cfg = jsconfd(['./test/samples/t1', './test/samples/t2'], { sort })
     assert.equal(cfg.k1, 't2/c1/k1')
     assert.equal(cfg.k2, 't2/c1/k2')
     assert.equal(cfg.k3, 't1/c2/k3')
