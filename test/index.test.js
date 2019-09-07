@@ -1,4 +1,5 @@
 const assert = require('assert')
+const path = require('path')
 const jsconfd = require('../src/index.js')
 
 describe('Folder loading', () => {
@@ -17,6 +18,11 @@ describe('Folder loading', () => {
     assert.equal(cfg.k3, 't1/c2/k3')
     assert.equal(cfg.k4, 't2/c3/k4')
     assert.equal(Object.keys(cfg).length, 4)
+  })
+
+  it('Works with absolute paths', () => {
+    const cfg = jsconfd([path.resolve(__dirname, 'samples/t1')])
+    assert.equal(Object.keys(cfg).length, 3)
   })
 
   it('Does not load overriden files at all', () => {

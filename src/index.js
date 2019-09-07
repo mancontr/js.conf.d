@@ -8,11 +8,11 @@ module.exports = function (folders, opts) {
 
   // Track all files from each folder, replacing the repeated names from previous folders
   for (const folder of folders) {
-    const fullFolder = path.join(process.cwd(), folder)
+    const fullFolder = path.resolve(process.cwd(), folder)
     if (!fs.existsSync(fullFolder)) continue
     const files = fs.readdirSync(fullFolder)
     for (const fileName of files) {
-      const fullPath = path.join(fullFolder, fileName)
+      const fullPath = path.resolve(fullFolder, fileName)
       filesMap[fileName] = fullPath
     }
   }
