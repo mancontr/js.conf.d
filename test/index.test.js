@@ -24,6 +24,12 @@ describe('Folder loading', () => {
     // We only need to check that no exception was thrown
     assert.equal(Object.keys(cfg).length, 3)
   })
+
+  it('Does not break on missing folders', () => {
+    const cfg = jsconfd(['./test/samples/tmissing', './test/samples/t1'])
+    // We only need to check that no exception was thrown
+    assert.equal(Object.keys(cfg).length, 3)
+  })
 })
 
 
