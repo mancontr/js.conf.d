@@ -15,8 +15,8 @@
     "loader",
     "overrides"
   ],
-  "author": "Anxo",
-  "license": "ISC",
+  "author": "Anxo Soto",
+  "license": "BSD",
   "bugs": {
     "url": "https://github.com/mancontr/js.conf.d/issues"
   },
