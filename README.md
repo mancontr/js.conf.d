@@ -4,13 +4,13 @@
 
 A simple configuration manager, with directory hierarchy / overrides support.
 
-Linux distributions' packages have had folder-based config for years. We're all used to easily adding files to a `nginx.conf.d` folder, and it being picked up automatically, in a predictable order. We're also used to having multiple paths where config will be searched, ordered by priority. But until now, on NPM we had to do this manually.
+Linux distributions' packages have had folder-based config for years. We're all used to easily adding files to a `nginx.conf.d` folder, and it being picked up automatically, in a predictable order. We're also used to having multiple paths where config will be searched, ordered by priority. But until now, on Node.js we had to do this manually.
 
 This package allows you to set a list of search folders, and any js files on them will be loaded and merged as a plain object, following configurable rules.
 
 ## Usage
 
-Using config.d is very simple:
+Using js.conf.d is very simple:
 
 ```js
 const jsconfd = require('js.conf.d')
@@ -27,3 +27,7 @@ const config = jsconfd.load(['/etc/my-config', '~/.my-config', './config'], {
   merge: (a, b) => { /*...*/ } // Value merger function. Defaults to Object.assign.
 })
 ```
+
+## Using with Webpack
+
+This package is designed for Node.js, and doesn't work directly on Webpack. Fortunately, we have created a small Webpack plugin which implements the same logic. Check [js.conf.d-webpack](https://github.com/mancontr/js.conf.d-webpack).

@@ -1,6 +1,6 @@
 {
   "name": "js.conf.d",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A simple config loader with folder overrides",
   "main": "src/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "overrides"
   ],
   "author": "Anxo Soto",
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/mancontr/js.conf.d/issues"
   },
