@@ -28,6 +28,12 @@ describe('File listing', () => {
     // We only need to check that no exception was thrown
     assert.equal(files.length, 2)
   })
+
+  it('Skips subdirs', () => {
+    const files = jsconfd.getEnabledFiles(['./test/samples/t1', './test/samples/tsubdir'])
+    // We must have loaded c3, but not subdir
+    assert.equal(files.length, 3)
+  })
 })
 
 

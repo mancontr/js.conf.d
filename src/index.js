@@ -11,7 +11,10 @@ const getEnabledFiles = (folders, sort) => {
     const files = fs.readdirSync(fullFolder)
     for (const fileName of files) {
       const fullPath = path.resolve(fullFolder, fileName)
-      filesMap[fileName] = fullPath
+      const stat = fs.lstatSync(fullPath)
+      if (stat.isFile()) {
+        filesMap[fileName] = fullPath
+      }
     }
   }
 
