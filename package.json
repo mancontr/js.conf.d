@@ -1,6 +1,6 @@
 {
   "name": "js.conf.d",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple config loader with folder overrides",
   "main": "src/index.js",
   "scripts": {
