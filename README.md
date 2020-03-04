@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mancontr/js.conf.d.svg?branch=master)](https://travis-ci.org/mancontr/js.conf.d)
+[![Build Status](https://travis-ci.com/mancontr/js.conf.d.svg?branch=master)](https://travis-ci.com/mancontr/js.conf.d)
 
 # js.conf.d
 
