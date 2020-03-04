@@ -10,6 +10,7 @@ const getEnabledFiles = (folders, sort) => {
     if (!fs.existsSync(fullFolder)) continue
     const files = fs.readdirSync(fullFolder)
     for (const fileName of files) {
+      if (fileName[0] === '.') continue // Skip hidden files
       const fullPath = path.resolve(fullFolder, fileName)
       const stat = fs.lstatSync(fullPath)
       if (stat.isFile()) {

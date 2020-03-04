@@ -34,6 +34,13 @@ describe('File listing', () => {
     // We must have loaded c3, but not subdir
     assert.equal(files.length, 3)
   })
+
+  it('Skips hidden files', () => {
+    const files = jsconfd.getEnabledFiles(['./test/samples/thidden'])
+    // We must have loaded c1, but not .hidden
+    assert.equal(files.length, 1)
+    assert.equal(files[0], path.resolve(__dirname, 'samples/thidden/c1.js'))
+  })
 })
 
 
