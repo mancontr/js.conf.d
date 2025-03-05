@@ -1,6 +1,6 @@
 {
   "name": "js.conf.d",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple config loader with folder overrides",
   "main": "./src/index.cjs",
   "module": "./src/index.mjs",
