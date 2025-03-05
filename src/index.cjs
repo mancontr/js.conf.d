@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const getEnabledFiles = (folders, sort) => {
+function getEnabledFiles (folders, sort) {
   // Create a list of all files from each folder,
   // replacing repeated filenames from previous folders
   const filesMap = {}
@@ -25,15 +25,23 @@ const getEnabledFiles = (folders, sort) => {
   return files.map(file => filesMap[file])
 }
 
-const mergeConfigs = (configs, merge) =>
-  configs.reduce((acc, curr) => merge(acc, curr), {})
+function mergeConfigs(configs, merge) {
+  return configs.reduce((acc, curr) => merge(acc, curr), {})
+}
 
-const getConfig = (folders, opts) => {
+async function getConfig(folders, opts) {
   const { merge = Object.assign, sort } = opts || {}
 
   const files = getEnabledFiles(folders, sort)
-  const configs = files.map(file => require(file))
-  return mergeConfigs(configs, merge)
+  const configs = await Promise.all(
+    files.map((file) => import(file).then((module) => module.default || module))
+  )
+
+  const normalizedConfigs = configs.map(config => ({
+    ...config
+  }))
+
+  return mergeConfigs(normalizedConfigs, merge)
 }
 
 getConfig.getEnabledFiles = getEnabledFiles
